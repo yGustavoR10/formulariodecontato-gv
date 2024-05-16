@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Formulário de Contato</title>
+<style>
+  .error-message {
+    color: red;
+  }
+</style>
+</head>
+<body>
+
+<form id="contact-form">
+  <div>
+    <h1>Formulário de Contato</h1>
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name">
+    <span id="name-error" class="error-message"></span>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    <span id="email-error" class="error-message"></span>
+  </div>
+  <div>
+    <label for="message">Mensagem:</label>
+    <textarea id="message" name="message"></textarea>
+    <span id="message-error" class="error-message"></span>
+  </div>
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    var nameInput = document.getElementById('name');
+    var emailInput = document.getElementById('email');
+    var messageInput = document.getElementById('message');
+    var isValid = true;
+
+    if (nameInput.value.trim() === '') {
+      document.getElementById('name-error').textContent = 'Por favor, preencha o nome.';
+      nameInput.style.border = '1px solid red';
+      isValid = false;
+    } else {
+      document.getElementById('name-error').textContent = '';
+      nameInput.style.border = '';
+    }
+
+    if (emailInput.value.trim() === '') {
+      document.getElementById('email-error').textContent = 'Por favor, preencha o email.';
+      emailInput.style.border = '1px solid red';
+      isValid = false;
+    } else {
+      document.getElementById('email-error').textContent = '';
+      emailInput.style.border = '';
+    }
+
+    if (messageInput.value.trim() === '') {
+      document.getElementById('message-error').textContent = 'Por favor, preencha a mensagem.';
+      messageInput.style.border = '1px solid red';
+      isValid = false;
+    } else {
+      document.getElementById('message-error').textContent = '';
+      messageInput.style.border = '';
+    }
+
+    if (!isValid) {
+      event.preventDefault(); // Impede o envio do formulário se houver campos vazios
+    } else {
+      alert('Mensagem enviada com sucesso!');
+    }
+  });
+</script>
+
+</body>
+</html>
